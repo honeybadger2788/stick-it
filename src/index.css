@@ -1,13 +1,221 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
+
+:root {/* CSS HEX */
+    --prussian-blue: #12263aff;
+    --blue-sapphire: #006989ff;
+    --gainsboro: #D9D9D9ff;
+    --aero-blue: #d3f8e2ff;
+    --mauve: #e4c1f9ff;
+    --amaranth-pink: #f694c1ff;
+    --medium-champagne: #ede7b1ff;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.aero-blue {
+  background-color: var(--aero-blue);
 }
+
+.mauve {
+  background-color: var(--mauve);
+}
+
+.amaranth-pink {
+  background-color: var(--amaranth-pink);
+}
+
+.medium-champagne {
+  background-color: var(--medium-champagne);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+}
+
+body {
+    font-family: 'Open Sans';
+    background-color: white;
+    color: var(--prussian-blue);
+}
+
+p {
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+h4 {
+    font-family: 'Roboto';
+    font-size: 1.56rem;
+}
+
+header {
+    background-color: rgba(217, 217, 217,0.5);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    width: 100%;
+}
+
+input, textarea {
+    background-color: rgba(217, 217, 217,0.5);
+    font-family: 'Roboto';
+    border:none;
+    padding: 10px;
+}
+
+textarea {
+    height: auto;
+    font-size: 1rem;
+    padding: 10px;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 5px;
+}
+
+div.new {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius: 5px;
+}
+
+input.new {
+    font-size: 1rem;
+    border-radius: 5px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 10px;
+}
+
+button.new {
+    border-radius: 5px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.error {
+  color: red !important;
+}
+
+.edit {
+    display: flex;
+    margin-top: 20px;
+    justify-content: flex-end;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.pad {
+    padding: 10px 10%;
+}
+
+input.search {
+    background-color: white !important;
+    border-radius: 5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 80%;
+}
+
+button.search {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.button {
+    background-color: var(--prussian-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--blue-sapphire);
+    color: white;
+}
+
+.note {
+    /*background-color: var(--mauve);*/
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.note:hover {
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149);
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--prussian-blue);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px rgba(60,64,67,0.302);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+
