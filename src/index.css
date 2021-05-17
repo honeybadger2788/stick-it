@@ -199,6 +199,10 @@ button.search {
     background-color: var(--prussian-blue);
   }
   
+  input:checked ~ body {
+    background-color: black;
+  }
+
   input:focus + .slider {
     box-shadow: 0 0 1px rgba(60,64,67,0.302);
   }
@@ -216,6 +220,14 @@ button.search {
   
   .slider.round:before {
     border-radius: 50%;
+  }
+
+  .warning {
+    background-color: #ffdddd;
+    position: fixed; 
+    bottom: 0;
+    width: 100%;
+    text-align: center;
   }
 
 

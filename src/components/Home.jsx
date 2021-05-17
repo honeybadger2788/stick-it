@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Header from './Header';
+import Footer from './Footer';
 import NewNote from './NewNote';
 import UpdateNote from './UpdateNote'
 import NoteList from './NoteList';
@@ -62,6 +63,7 @@ function Home() {
         } 
         <NoteList notes={notes} deleteNote={deleteNote} editRow={editRow}/>
       </div>
+      <Footer/>
     </div>
   );
 }
