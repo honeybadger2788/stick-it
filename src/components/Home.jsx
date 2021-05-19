@@ -1,35 +1,25 @@
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React, { useState, useEffect } from 'react';
+//import { v4 as uuidv4 } from 'uuid';
 import Header from './Header';
 import Footer from './Footer';
 import NewNote from './NewNote';
 import UpdateNote from './UpdateNote'
 import NoteList from './NoteList';
+import SearchList from './SearchList';
+
 
 function Home() {
-  const notesData = [
-    {id: uuidv4() , title: "Hola", text: "Soy una notita", bgrColor: "m-2 note aero-blue"},
-    {id: uuidv4() , title: "Holaa", text: "Soy una notitaa", bgrColor: "m-2 note mauve"},
-    {id: uuidv4() , title: "Holaaa", text: "Soy una notitaaa", bgrColor: "m-2 note amaranth-pink"},
-    {id: uuidv4() , title: "Holaaaa", text: "Soy una notitaaaa", bgrColor: "m-2 note medium-champagne"},
-  ]
 
-  const [notes, setNotes] = useState(notesData);
+  const [notes, setNotes] = useState([]);
 
-  const addNote = (note) => {
-    note.id = uuidv4()
-    note.bgrColor = "m-2 note aero-blue"
-    console.log(note)
-    setNotes([
-      ...notes,
-      note
-    ])
-  }
-
-  const deleteNote = (id) => {
-    //console.log(id)
-    setNotes(notes.filter(note => note.id !== id))
-  }
+  useEffect(() => { 
+    fetch('https://stick-it-back.herokuapp.com/notes')
+    .then((response)=>{return response.json()})
+    .then((result)=>{
+      setNotes(result.data)
+    })
+    .catch((e)=>{console.log(e)})
+  }, []);
 
   const [editing, setEditing] = useState(false)
 
@@ -40,28 +30,39 @@ function Home() {
 
   const editRow = (note) => {
     setEditing(true) 
-    setCurrentNote({ id: note.id, title: note.title, text: note.text, bgrColor: note.bgrColor})
+    setCurrentNote({ id: note.id, title: note.title, text: note.text})
   }
 
-  const updateNote = (id, updatedNote) => {
-    //console.log(id)
-    setEditing(false) 
-    setNotes(notes.map(note => note.id === id ? updatedNote: note))
+  const [searching, setSearching] = useState(false)
+  const [searchingList, setSearchingList] = useState([])
+
+  const searchedNote = (notesList) => {
+    setSearching(true)
+    if (notesList.leanght !== 0){
+      setSearchingList(notesList)
+    } else {
+      setSearchingList(notes)
+    }
   }
 
   return (
     <div>
-      <Header/>
+      <Header searchedNote={searchedNote}/>
       <div className="container-fluid">
         {
           editing ? (
-            <UpdateNote currentNote={currentNote}
-            updateNote={updateNote}/>
+            <UpdateNote currentNote={currentNote}/>
           ) : (
-            <NewNote addNote={addNote}/>
+            <NewNote/>
+          )
+        }
+        {
+          searching ? (
+            <SearchList notes={searchingList} editRow={editRow}/>
+          ) : (
+            <NoteList notes={notes} editRow={editRow}/>
           )
         } 
-        <NoteList notes={notes} deleteNote={deleteNote} editRow={editRow}/>
       </div>
       <Footer/>
     </div>

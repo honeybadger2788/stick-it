@@ -230,4 +230,10 @@ button.search {
     text-align: center;
   }
 
+  @media (max-width: 768px) {
+    .warning {
+      position:static; 
+    }
+  }
+
 

@@ -1,13 +1,29 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-function NewNote(props) {
-    const {register,formState: { errors },handleSubmit} = useForm();
+function NewNote() {
+    const {register,formState: { errors }, handleSubmit} = useForm();
 
     const onSubmit = (data, e) => {
-        //console.log(data)
-        props.addNote(data)
-        e.target.reset();
+    console.log(data)
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("title", data.title);
+    urlencoded.append("text", data.text);
+
+    var requestOptions = {
+        method: 'POST',
+        body: urlencoded
+    };
+
+    fetch("https://stick-it-back.herokuapp.com/notes/create", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            console.log(result)
+            window.location.reload()
+            e.target.reset();
+        })
+        .catch(error => console.log('error', error));
     }
 
     return (

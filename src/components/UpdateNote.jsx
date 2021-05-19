@@ -15,15 +15,34 @@ function UpdateNote(props) {
     setValue('text', props.currentNote.text)
 
     const onSubmit = (data, e) => {
-        //console.log(data)
-        data.id = props.currentNote.id
-        props.updateNote(props.currentNote.id,data)
-        e.target.reset();
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("title", data.title);
+        urlencoded.append("text", data.text);
+
+        var requestOptions = {
+            method: 'PATCH',
+            body: urlencoded,
+        };
+
+        fetch(`https://stick-it-back.herokuapp.com/notes/update/${props.currentNote.id}`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result)
+                result = JSON.parse(result)
+                if(result.meta.status === 200){
+                    alert('Nota editada con éxito')
+                    window.location.reload()
+                    e.target.reset();
+                } else {
+                    alert('Algo salió mal')
+                }
+            })
+            .catch(error => console.log('error', error));        
     }
 
     return (
         <section className="container-fluid m-3 pad">
-        <form className="col-md-6 mx-auto d-flex flex-column new pad" onSubmit={handleSubmit(onSubmit)}>
+        <form className="col-md-6 mx-auto d-flex flex-column new pad" action={"https://stick-it-back.herokuapp.com/notes/update/"+props.currentNote.id} method="POST" onSubmit={handleSubmit(onSubmit)}>
                 <p className="error">{errors.title && errors.title.message}</p>
                 <input type="text" name="title" className="new" placeholder="Título" {...register("title", { required: {value:true, message: "El titulo es obligatorio"}, maxLength: {value:20, message: "El titulo no puede tener + de 20 caracteres"} })}/>
                 <p className="error">{errors.text && errors.text.message}</p>
