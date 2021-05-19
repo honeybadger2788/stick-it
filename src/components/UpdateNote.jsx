@@ -1,5 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
+
 
 function UpdateNote(props) {
 
@@ -30,11 +35,25 @@ function UpdateNote(props) {
                 console.log(result)
                 result = JSON.parse(result)
                 if(result.meta.status === 200){
-                    alert('Nota editada con éxito')
-                    window.location.reload()
-                    e.target.reset();
+                    MySwal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Nota editada con éxito!',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                    .then(()=>{
+                        window.location.reload()
+                        e.target.reset();
+                    })
                 } else {
-                    alert('Algo salió mal')
+                    MySwal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Ups! Algo salió mal',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
                 }
             })
             .catch(error => console.log('error', error));        

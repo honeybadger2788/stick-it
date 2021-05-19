@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-//import { v4 as uuidv4 } from 'uuid';
 import Header from './Header';
 import Footer from './Footer';
 import NewNote from './NewNote';
@@ -48,7 +47,7 @@ function Home() {
   return (
     <div>
       <Header searchedNote={searchedNote}/>
-      <div className="container-fluid">
+      <div className="container-fluid pb-3">
         {
           editing ? (
             <UpdateNote currentNote={currentNote}/>

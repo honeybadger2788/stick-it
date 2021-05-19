@@ -42,6 +42,7 @@ body {
     color: var(--prussian-blue);
 }
 
+
 p {
   font-size: 1rem;
   line-height: 2rem;
@@ -144,7 +145,6 @@ button.search {
 }
 
 .note {
-    /*background-color: var(--mauve);*/
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -199,10 +199,6 @@ button.search {
     background-color: var(--prussian-blue);
   }
   
-  input:checked ~ body {
-    background-color: black;
-  }
-
   input:focus + .slider {
     box-shadow: 0 0 1px rgba(60,64,67,0.302);
   }

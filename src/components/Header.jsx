@@ -20,7 +20,7 @@ function Header(props) {
 
     return (
         <header className="container-md-fluid pad">
-            <div className="row d-flex justify-content-between align-items-center">
+            <div className="row d-flex justify-content-around align-items-center">
             <div className="col-md-auto mb-md-0 mb-4">
                 <i className="far fa-sticky-note fa-3x"> Stick-it</i>
             </div>
@@ -28,12 +28,6 @@ function Header(props) {
                 <input type="text" className="search" name="search" placeholder="Search.." {...register("search", { required: {value:true}})}></input>
                 <button className="button search fa fa-search" type="submit"></button>
             </form>
-            <div className="col-md-auto mb-md-0 mb-4">
-                <label className="switch">
-                <input type="checkbox"/>
-                <span className="slider round"></span>
-                </label>
-            </div>
             </div>
         </header>
     )
