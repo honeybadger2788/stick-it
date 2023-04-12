@@ -1,4 +1,4 @@
-# Resumen del repositorio "stick-it"
+# Stick-it
 
 Es una aplicación de notas adhesivas (post-its) que utiliza tecnologías web como HTML, CSS y JavaScript. 
 
